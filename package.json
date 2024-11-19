@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "copy-files-from-to": "^3.12.0"
+  },
+  "scripts": {
+    "postinstall": "npm run copy",
+    "copy": "copy-files-from-to"
+  },
+  "copyFiles": [
+    {
+      "from": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "to": "public/lib/bootstrap.min.css"
+    },
+    {
+      "from": "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "to": "public/lib/bootstrap.bundle.min.js"
+    }
+  ]
+}
