@@ -16,17 +16,17 @@
             'tel' => '+49 5251 522 507',
             'text' => 'Some random text',
             'time' => '12:00',
-            'url' => '12:00',
+            'url' => 'https://example.org/',
             'week' => '2024W14',
         ];
     @endphp
     <div class="row">
         @foreach($inputTypes as $inputType => $value)
-            <x-bs::form.field container-class="col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2"
-                              name="field_{{ $inputType }}"
-                              type="{{ $inputType }}"
-                              :value="$value">{{ $inputType }} input
-            </x-bs::form.field>
+            @foreach([false, true] as $required)
+                <x-bs::form.field container-class="col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2"
+                                  name="field_{{ $inputType }}" type="{{ $inputType }}" :required="$required"
+                                  :value="$value">{{ $inputType }} input</x-bs::form.field>
+            @endforeach
         @endforeach
     </div>
 
@@ -95,9 +95,85 @@
         @endforeach
     </div>
 
-    <h3 class="mt-3">Set value from query</h3>
-    <a href="#test?test2=test-query">Query parameter test-query</a>
-    <x-bs::form.field name="test2" type="text"
-                      :from-query="true">Test 2
-    </x-bs::form.field>
+    <h3 class="mt-3" id="input-groups">Input groups</h3>
+    <div class="row my-2">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+            <x-bs::form.field name="price_from" type="number" min="1" step="1">
+                <x-slot:prependText>from</x-slot:prependText>
+                Price
+                <x-slot:appendText>€</x-slot:appendText>
+            </x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+            <x-bs::form.field name="price2" type="number" min="1" step="1">
+                Price
+                <x-slot:appendText>€</x-slot:appendText>
+            </x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="file" type="file">
+                File
+                <x-slot:appendText :container="false">
+                    <x-bs::button.link href="#">Download</x-bs::button.link>
+                </x-slot:appendText>
+            </x-bs::form.field>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="price_from" type="number" min="1" step="1">
+                <x-slot:prependText>from</x-slot:prependText>
+                Price
+                <x-slot:appendText :container="false">
+                    <x-bs::form.field name="price_until" type="number" min="1" step="1" :nested-in-group="true">
+                        <x-slot:prependText>until</x-slot:prependText>
+                        <x-slot:appendText>€</x-slot:appendText>
+                    </x-bs::form.field>
+                </x-slot:appendText>
+            </x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="amount_from" type="number" min="1" step="1">
+                <x-slot:prependText>from</x-slot:prependText>
+                Amount
+                <x-slot:appendText :container="false">
+                    <x-bs::form.field name="amount_until" type="number" min="1" step="1" :nested-in-group="true">
+                        <x-slot:prependText>until</x-slot:prependText>
+                        <x-slot:appendText :container="false">
+                            <x-bs::form.field name="amount_with_step" type="number" min="1" step="1" :nested-in-group="true">
+                                <x-slot:prependText>with step</x-slot:prependText>
+                            </x-bs::form.field>
+                        </x-slot:appendText>
+                    </x-bs::form.field>
+                </x-slot:appendText>
+            </x-bs::form.field>
+        </div>
+    </div>
+
+    <h3 class="mt-3" id="disabled-readonly-required">Disabled, readonly, required</h3>
+    <div class="row my-2">
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="test-disabled" type="text" :disabled="true">Test disabled</x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="test-readonly" type="text" :readonly="true">Test readonly</x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <x-bs::form.field name="test-required" type="text" :required="true">Test required</x-bs::form.field>
+        </div>
+    </div>
+
+    <h3 class="mt-3" id="set-value-from-query">Set value from query</h3>
+    <div class="row my-2">
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="?test1=example-query#set-value-from-query">Query parameter example-query</a>
+            <x-bs::form.field name="test1" type="text"
+                              :from-query="true">Test1 from Query</x-bs::form.field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="?test2=example-query#set-value-from-query">Query parameter example-query</a>
+            <x-bs::form.field name="test2" type="text" value="default-value"
+                              :from-query="true">Test2 from Query</x-bs::form.field>
+        </div>
+    </div>
 </section>

@@ -39,11 +39,16 @@
                     <x-bs::nav.item id="formsDropdown">
                         Forms
                         <x-slot:dropdown>
+                            <x-bs::dropdown.header>Field types</x-bs::dropdown.header>
                             <x-bs::dropdown.item href="#forms">Forms</x-bs::dropdown.item>
                             <x-bs::dropdown.item href="#inputs">Input fields</x-bs::dropdown.item>
                             <x-bs::dropdown.item href="#textareas">Textareas</x-bs::dropdown.item>
                             <x-bs::dropdown.item href="#check-radio-switch">Check, radio, switch</x-bs::dropdown.item>
                             <x-bs::dropdown.item href="#selects">Selection fields</x-bs::dropdown.item>
+                            <x-bs::dropdown.header>Parameters</x-bs::dropdown.header>
+                            <x-bs::dropdown.item href="#input-groups">Input groups</x-bs::dropdown.item>
+                            <x-bs::dropdown.item href="#disabled-readonly-required">Disabled, readonly, required</x-bs::dropdown.item>
+                            <x-bs::dropdown.item href="#set-value-from-query">Set value from query</x-bs::dropdown.item>
                         </x-slot:dropdown>
                     </x-bs::nav.item>
                     <x-bs::nav.item href="#links">Links</x-bs::nav.item>

@@ -18,6 +18,6 @@
     },
     "require": {
         "php": "^8.2",
-        "portavice/bladestrap": "^1.3.0"
+        "portavice/bladestrap": "^1.4.0"
     }
 }
