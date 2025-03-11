@@ -55,5 +55,21 @@
                 </x-bs::dropdown.button>
             @endforeach
         </div>
+        <div class="d-flex flex-row gap-3 mt-3">
+            <x-bs::button.group>
+                <x-bs::button.group>
+                    @foreach(['primary', 'secondary'] as $variant)
+                        <x-bs::dropdown.button :variant="$variant" :nested-in-group="true">
+                            {{ $variant }} dropdown in group
+                            <x-slot:dropdown>
+                                <x-bs::dropdown.item href="#top">Item 1</x-bs::dropdown.item>
+                                <x-bs::dropdown.item>Item 2</x-bs::dropdown.item>
+                            </x-slot:dropdown>
+                        </x-bs::dropdown.button>
+                    @endforeach
+                </x-bs::button.group>
+                <x-bs::button.link href="#">Normal button in group</x-bs::button.link>
+            </x-bs::button.group>
+        </div>
     </div>
 </section>
