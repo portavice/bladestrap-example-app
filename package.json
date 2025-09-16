@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.8",
     "copy-files-from-to": "^3.12.1"
   },
   "scripts": {
