@@ -2,7 +2,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "copy-files-from-to": "^3.12.1"
+    "copy-files-from-to": "^3.13.0"
   },
   "scripts": {
     "postinstall": "npm run copy",
